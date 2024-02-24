@@ -1,131 +1,92 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: normal;
+    /* border-radius: 50px; */
 }
 
-.header {
-  height: 72px;
-  background: darkmagenta;
-  color: white;
-  font-size: 32px;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
+html {
+    font-size: 10px;
+    background: url('./++IMG_20221106_155010_183.jpg') center;
+    background-size: cover;
 }
 
-.container {
-  border: 1px solid black;
-  border-radius: 12px;
-  height: 550px;
-  width: 345px;
-  padding: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background: rgb(177, 177, 177);
+/* body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, black, gray);
+} */
+
+.calculator-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center; /*align-content vs. align items is what fixed problem*/
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 60px); /* minmax this is where i can change it to be how i want instead of new lines for long numbers shrink the font size */
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.calculator-grid > button {
+    font-size: 1.5rem;
+    border: .5px solid black;
+    outline: none;
+    /* margin: 5px; */
+    background-color: rgba(255, 255, 255, .75);
 }
 
-.body {
-  flex: 1;
-  /* display: flex; */
-  flex-basis: 30%;
+.calculator-grid > .operation {
+    background-color: rgba(253, 152, 36, 0.904);
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  font-size: 24px;
+.calculator-grid > .operation:active {
+    background-color: rgba(182, 131, 78, 0.904);
 }
 
-.footer {
-  height: 72px;
-  background: white;
-  color: darkmagenta;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.calculator-grid > .clear:active {
+    background-color: rgba(255, 255, 255, .75);
 }
 
-.sidebar {
-  width: 300px;
-  background: royalblue;
-  flex-shrink: 0;
-  padding: 16px;
+.calculator-grid > .span-two-and-clear:active {
+    grid-column: span 2;
+    background-color: rgba(255, 255, 255, .75);
 }
 
-.screen {
-  border: 1px solid black;
-  box-shadow: 2px 4px 16px rgba(0,0,0,.06);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 8px;
-  width: 300px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  background: rgb(233, 232, 232);
-  font-size: xx-large;
+.calculator-grid > button:active {
+    background-color: rgba(255, 255, 255, .9);
+    /* border-radius: 25px; */
 }
 
-.clear {
-  border: 1px solid black;
-  box-shadow: 2px 4px 16px rgba(0,0,0,.06);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 6px;
-  width: 126px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgb(236, 136, 136);
-  font-size: x-large;
+.span-two {
+    grid-column: span 2;
 }
 
-.delete {
-  border: 1px solid black;
-  box-shadow: 2px 4px 16px rgba(0,0,0,.06);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 6px;
-  width: 126px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgb(125, 192, 255);
-  font-size: x-large;
+.calculator-grid > .span-two-and-clear {
+    grid-column: span 2;
+    background-color: rgba(255, 255, 255, .5);
 }
 
-.button {
-  border: 1px solid black;
-  box-shadow: 2px 4px 16px rgba(0,0,0,.06);
-  border-radius: 4px;
-  padding: 16px;
-  margin: 6px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgb(233, 232, 232);
-  font-size: x-large;
+.calculator-grid > .clear {
+    background-color: rgba(255, 255, 255, .5);
 }
 
-li {
-  margin-bottom: 16px;
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all; /* also here could be what causes it to wrap when i really want it to shrink instead */
+}
+
+.output .previous-operand {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+}
+
+.output .current-operand {
+    color: white;
+    font-size: 2.5rem;
 }
